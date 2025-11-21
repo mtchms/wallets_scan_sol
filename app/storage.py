@@ -90,7 +90,7 @@ class Storage:
     async def get_all_results(self) -> List[ScamDetectionResult]:
         return list(self._results_cache.values())
     
-    async def export_to_csv(self) -> str:
+    async def export_to_csv(self) -> str: # просто для csv
         results = await self.get_all_results()
         
         with open(self.csv_file, 'w', newline='', encoding='utf-8') as f:
@@ -105,3 +105,4 @@ class Storage:
         logger.info(f"Экспортировано {len(results)} результатов в {self.csv_file}")
 
         return self.csv_file
+
