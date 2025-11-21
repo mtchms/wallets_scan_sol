@@ -1,0 +1,15 @@
+services:
+  scam-detector:
+    build: .
+    container_name: solana-scam-detector
+    ports:
+      - "80:8000"
+    volumes:
+      - ./app:/app/app
+      - ./data:/app/data
+      - ./scripts:/app/scripts
+    environment:
+      - HELIUS_API_KEY=${HELIUS_API_KEY}
+      - BUNDLE_INDEX_THRESHOLD=30
+      - LARGE_PURCHASE_SOL_THRESHOLD=30.0
+    restart: unless-stopped
