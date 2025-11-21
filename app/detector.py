@@ -8,7 +8,7 @@ from app.storage import Storage
 logger = logging.getLogger(__name__)
 
 LAMPORTS_PER_SOL = 1_000_000_000
-BUNDLE_INDEX_THRESHOLD = 30
+BUNDLE_INDEX_THRESHOLD = 15
 LARGE_PURCHASE_THRESHOLD_SOL = 30.0
 PUMP_SUFFIX = "pump"
 
@@ -160,3 +160,4 @@ class ScamDetector:
     
     def _check_mint_suffix(self, mint: str) -> bool:
         return not mint.endswith(PUMP_SUFFIX)
+
