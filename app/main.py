@@ -59,7 +59,7 @@ async def root():
     }
 
 
-@app.post("/webhook")
+@app.post("/webhook") # подсчет filtered_out чисто для отслеживания логов, можно убрать
 async def webhook_handler(request: Request):
     try:
         body = await request.json()
@@ -192,4 +192,5 @@ async def export_results():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
