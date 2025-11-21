@@ -40,7 +40,7 @@ class Storage:
         
         logger.info("Storage инициализирован")
     
-    async def add_transaction(self, mint: str, transaction: HeliusTransaction):
+    async def add_transaction(self, mint: str, transaction: HeliusTransaction): # просто для хранения результатов в json
         mint_file = os.path.join(self.transactions_dir, f"{mint}.json")
         
         transactions = []
@@ -59,7 +59,7 @@ class Storage:
             async with aiofiles.open(mint_file, 'w', encoding='utf-8') as f:
                 await f.write(json.dumps(transactions, indent=2, ensure_ascii=False))
     
-    async def get_token_transactions(self, mint: str) -> List[HeliusTransaction]:
+    async def get_token_transactions(self, mint: str) -> List[HeliusTransaction]: # просто для хранения результатов в json
         mint_file = os.path.join(self.transactions_dir, f"{mint}.json")
         
         if not os.path.exists(mint_file):
@@ -74,7 +74,7 @@ class Storage:
             logger.error(f"Ошибка загрузки транзакций для {mint}: {e}")
             return []
     
-    async def save_result(self, result: ScamDetectionResult):
+    async def save_result(self, result: ScamDetectionResult): # просто для хранения результатов в json
         self._results_cache[result.mint] = result
         
         try:
@@ -103,4 +103,5 @@ class Storage:
                 writer.writerow([result.mint, status, reasons])
         
         logger.info(f"Экспортировано {len(results)} результатов в {self.csv_file}")
+
         return self.csv_file
