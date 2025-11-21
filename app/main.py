@@ -141,7 +141,7 @@ async def get_token_status(mint: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/stats")
+@app.get("/stats") # эндпоинт для удобной статистики (можно убирать)
 async def get_stats():
     try:
         results = await storage.get_all_results()
@@ -172,9 +172,8 @@ async def get_stats():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/export")
+@app.post("/export") # эндпоинта экспорта в csv, можно убирать
 async def export_results():
-    """Экспортировать результаты в CSV"""
     try:
         csv_path = await storage.export_to_csv()
         results = await storage.get_all_results()
@@ -193,3 +192,4 @@ async def export_results():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
